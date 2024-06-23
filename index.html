@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edna's Portfolio</title>
+    <style>
+        @font-face { font-family: DMSans; src: url('DMSans-Regular.ttf'); font-display: swap; }
+        @font-face { font-family: DMSans; font-weight: medium; src: url('DMSans-Medium.ttf'); font-display: swap; }
+        @font-face { font-family: DMSans; font-weight: bold; src: url('DMSans-Bold.ttf'); font-display: swap; }
+        @keyframes gradient {
+          0% {--c1: #dadedd; --c2: #a3a6a5}
+          50% {--c2: #dadedd; --c1: #a3a6a5}
+          100% {--c1: #dadedd; --c2: #a3a6a5}
+        }
+        @keyframes opacity {
+          0% {opacity: 1.0}
+          100% {opacity: 0.0}
+        }
+        @property --c1{
+          syntax: 'color';
+          inherits: false;
+        }
+        @property --c2{
+          syntax: 'color';
+          inherits: false;
+        }
+    </style>
+</head>
+<body>
+<div style="background-image: linear-gradient(to bottom left, var(--c1) , var(--c2)); height: calc(100vh - (2.5vw + 2.5vh)); width: calc(100vw - (2.5vw + 2.5vh)); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: calc(2.5vw + 2.5vh); animation: gradient 3s ease infinite;", id="backgrounddiv">
+</div>
+<div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: calc(2.5vw + 2.5vh);", id="backgrounddiv">
+  <h style="font-family: DMSans; font-weight: bold; font-size: calc(5vw + 15vh);">Edna</h>
+</div>
+</body>
+<script>
+const main = () => {
+  const windowheight = window.innerHeight;
+  const windowwidth = window.innerWidth;
+  const backgrounddiv = document.getElementById("backgrounddiv");
+  //backgrounddiv.style.height = `${aspectwidth*90}vh`
+  //backgrounddiv.style.width = `${aspectheight*90}vw`
+};
+window.onload = function() {
+  main();
+};
+window.onscroll = function() {
+  main();
+};
+window.onresize = function() {
+  main();
+};
+</script>
+</html>
