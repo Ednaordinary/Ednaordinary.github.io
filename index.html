@@ -4,40 +4,44 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Edna's Portfolio</title>
     <style>
-        @font-face { font-family: DMSans; src: url('DMSans-Regular.ttf'); font-display: swap; }
-        @font-face { font-family: DMSans; font-weight: medium; src: url('DMSans-Medium.ttf'); font-display: swap; }
-        @font-face { font-family: DMSans; font-weight: bold; src: url('DMSans-Bold.ttf'); font-display: swap; }
-        @keyframes gradient {
-          0% {--c1: #dadedd; --c2: #a3a6a5}
-          50% {--c2: #dadedd; --c1: #a3a6a5}
-          100% {--c1: #dadedd; --c2: #a3a6a5}
+        @font-face { font-family: DMSans; src: url('DMSans.ttf'); font-display: block; }
+        @keyframes ednaOnLoad {
+          0% {
+            font-weight: 100;
+            color: #E1D6CA00;
+          }
+          100% {
+            font-weight: 700;
+            color: #3c4043ff;
+          }
         }
-        @keyframes opacity {
-          0% {opacity: 1.0}
-          100% {opacity: 0.0}
-        }
-        @property --c1{
-          syntax: 'color';
-          inherits: false;
-        }
-        @property --c2{
-          syntax: 'color';
-          inherits: false;
+        @keyframes ednaBackgroundOnLoad {
+          0% {
+            border-radius: calc(1.0vw + 1.0vh);
+          }
+          100% {
+            border-radius: calc(2.5vw + 2.5vh);
+          }
         }
     </style>
 </head>
-<body>
-<div style="background-image: linear-gradient(to bottom left, var(--c1) , var(--c2)); height: calc(100vh - (2.5vw + 2.5vh)); width: calc(100vw - (2.5vw + 2.5vh)); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: calc(2.5vw + 2.5vh); animation: gradient 3s ease infinite;", id="backgrounddiv">
+<!--<body>-->
+<!--<div style="background-image: linear-gradient(to bottom left, var(&#45;&#45;c1) , var(&#45;&#45;c2)); height: calc(100vh - (2.5vw + 2.5vh)); width: calc(100vw - (2.5vw + 2.5vh)); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: calc(2.5vw + 2.5vh); animation: gradient 3s ease infinite;", id="backgrounddiv">-->
+<!--</div>-->
+<div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh);", id="ednadiv">
+  <h style="font-family: DMSans; font-size: calc(5vw + 15vh); animation: 1s ease 0s 1 ednaOnLoad; font-weight: 700; color: #3c4043ff;">Edna</h>
 </div>
-<div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: calc(2.5vw + 2.5vh);", id="backgrounddiv">
-  <h style="font-family: DMSans; font-weight: bold; font-size: calc(5vw + 15vh);">Edna</h>
+<div id="actions">
+    <div id="actions-1">
+        <h style="font-family: DMSans; font-weight: 500; font-size: calc(3vw + 3vh);">About me</h>
+    </div>
 </div>
 </body>
 <script>
 const main = () => {
-  const windowheight = window.innerHeight;
-  const windowwidth = window.innerWidth;
-  const backgrounddiv = document.getElementById("backgrounddiv");
+  //const windowheight = window.innerHeight;
+  //const windowwidth = window.innerWidth;
+  //const backgrounddiv = document.getElementById("backgrounddiv");
   //backgrounddiv.style.height = `${aspectwidth*90}vh`
   //backgrounddiv.style.width = `${aspectheight*90}vw`
 };
