@@ -73,14 +73,15 @@
     <div onclick="aboutMeClick()" style="background-color: #c9960a; position: fixed; bottom: 0%; right: 0%; border-radius: calc(1vh + 1vw) 0% 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 aboutMeOnLoad; z-index: 1; cursor: pointer;" id="aboutmediv">
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</h>
         <br>
-        <h id="aboutmescrolltext"></h>
+        <h id="aboutmescrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
     </div>
 </div>
-<div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2;", id="ednadiv">
+<div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);", id="ednadiv">
     <h style="font-family: DMSans; font-size: calc(5vw + 15vh); animation: 1s ease 0s 1 ednaOnLoad; font-weight: 700; color: #3c4043ff;">Edna</h>
 </div>
 </body>
 <script>
+    clicked = false;
     function aboutMeClick() {
         console.log("running aboutmeclick");
         const aboutme = document.getElementById("aboutmediv");
@@ -94,6 +95,7 @@
         aboutme.style.zIndex = "5";
         aboutme.style.padding = "calc(7vh + 7vw)";
         aboutme.setAttribute('onclick', 'aboutMeUnclick();');
+        clicked = true;
         scrollAboutMeText();
     };
     function aboutMeUnclick() {
@@ -109,26 +111,39 @@
         aboutme.style.zIndex = "5";
         aboutme.style.padding = "calc(1vh + 1vw)";
         aboutme.setAttribute('onclick', 'aboutMeClick();');
+        clicked = false;
+        unscrollAboutMeText();
     };
-
-    //function scrollAboutMeTextLayered(this_indice) {
-    //    const aboutmetext = document.getElementById("aboutmescrolltext");
-    //    aboutmetext.textContent = new_text.split(" ").splice(0, this_indice).join(" ");
-    //    console.log(new_text.split(" ").splice(0, this_indice).join(" "));
-    //};
     function scrollAboutMeText() {
         new_text = "This is where my about me section will go";
         const aboutmetext = document.getElementById("aboutmescrolltext");
         time = 0;
         indice = 1;
         for (const string of new_text.split(" ")) {
-            //setInterval(function() {scrollAboutMeTextLayered(indice);}, time);
-            setTimeout(function() {
-                aboutmetext.textContent = new_text.split(" ").splice(0, indice).join(" ");
-                indice = indice + 1;
-            }, time);
+            if (clicked == true) {
+                setTimeout(function() {
+                    aboutmetext.textContent = new_text.split(" ").splice(0, indice).join(" ");
+                    indice = indice + 1;
+                }, time);
+            };
             time = time + 100;
         };
     };
+    function unscrollAboutMeText() {
+        new_text = "This is where my about me section will go";
+        const aboutmetext = document.getElementById("aboutmescrolltext");
+        time = 0;
+        indice = new_text.split(" ").length - 1;
+        console.log(indice);
+        for (const string of new_text.split(" ")) {
+            if (clicked == false) {
+                setTimeout(function() {
+                    aboutmetext.textContent = new_text.split(" ").splice(0, indice).join(" ");
+                    indice = indice - 1;
+                }, time);
+            };
+            time = time + 100;
+        };
+    }
 </script>
 </html>
