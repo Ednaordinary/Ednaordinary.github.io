@@ -23,36 +23,58 @@
             border-radius: calc(2.5vw + 2.5vh);
           }
         }
+        @keyframes aboutMeOnLoad {
+          0% {
+            position: fixed; bottom: 50%; right: 50%;
+            -webkit-transform: translate(50%, 50%); transform: translate(50%, 50%);
+            border-radius: calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw);
+          }
+          100% {
+            position: fixed; bottom: 0%; right: 0%;
+            -webkit-transform: translate(0%, 0%); transform: translate(0%, 0%);
+            border-radius: calc(1vh + 1vw) 0% 0% 0%;
+          }
+        }
+        @keyframes aboutMeOnClick {
+          0% {
+            position: fixed; bottom: 0%; right: 0%;
+            -webkit-transform: translate(0%, 0%); transform: translate(0%, 0%);
+            border-radius: calc(1vh + 1vw) 0% 0% 0%;
+            z-index: 5;
+            padding: calc(1vh + 1vw);
+          }
+          100% {
+            position: fixed; bottom: 50%; right: 50%;
+            -webkit-transform: translate(50%, 50%); transform: translate(50%, 50%);
+            border-radius: calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw);
+            z-index: 5;
+            padding: calc(5vh + 5vw);
+          }
+        }
     </style>
 </head>
-<!--<body>-->
-<!--<div style="background-image: linear-gradient(to bottom left, var(&#45;&#45;c1) , var(&#45;&#45;c2)); height: calc(100vh - (2.5vw + 2.5vh)); width: calc(100vw - (2.5vw + 2.5vh)); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: calc(2.5vw + 2.5vh); animation: gradient 3s ease infinite;", id="backgrounddiv">-->
-<!--</div>-->
+<div id="actions">
+    <div onclick="aboutMe()" style="background-color: #c9960a; position: fixed; bottom: 0%; right: 0%; border-radius: calc(1vh + 1vw) 0% 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 aboutMeOnLoad;" id="aboutmediv">
+        <h onclick="aboutMe()" style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</h>
+    </div>
+</div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh);", id="ednadiv">
   <h style="font-family: DMSans; font-size: calc(5vw + 15vh); animation: 1s ease 0s 1 ednaOnLoad; font-weight: 700; color: #3c4043ff;">Edna</h>
 </div>
-<div id="actions">
-    <div style="background-color: #c9960a; position: fixed; bottom: 0%; right: 0%; border-radius: calc(1vh + 1vw) 0% 0% 0%; padding: calc(1vh + 1vw);" id="aboutmediv">
-        <h style="font-family: DMSans; font-weight: 500; font-size: calc(3vw + 3vh);">About me</h>
-    </div>
-</div>
 </body>
 <script>
-const main = () => {
-  //const windowheight = window.innerHeight;
-  //const windowwidth = window.innerWidth;
-  //const backgrounddiv = document.getElementById("backgrounddiv");
-  //backgrounddiv.style.height = `${aspectwidth*90}vh`
-  //backgrounddiv.style.width = `${aspectheight*90}vw`
-};
-window.onload = function() {
-  main();
-};
-window.onscroll = function() {
-  main();
-};
-window.onresize = function() {
-  main();
+function aboutMe() {
+    console.log("running aboutme");
+    const aboutme = document.getElementById("aboutmediv");
+    aboutme.style.animation = "2s ease 0s 1 aboutMeOnClick";
+    aboutme.style.position = "fixed";
+    aboutme.style.bottom = "50%";
+    aboutme.style.right = "50%";
+    aboutme.style.transform = "translate(50%, 50%)";
+    aboutme.style.webkitTransform = "translate(50%, 50%)";
+    aboutme.style.borderRadius = "calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw)";
+    aboutme.style.zIndex = "5";
+    aboutme.style.padding = "calc(5vh + 5vw)";
 };
 </script>
 </html>
