@@ -35,6 +35,32 @@
             border-radius: calc(1vh + 1vw) 0% 0% 0%;
           }
         }
+        @keyframes projectsOnLoad {
+          0% {
+            position: fixed; bottom: 50%; left: 50%;
+            -webkit-transform: translate(-50%, 50%); transform: translate(-50%, 50%);
+            border-radius: calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw);
+          }
+          100% {
+            position: fixed; bottom: 0%; left: 0%;
+            -webkit-transform: translate(0%, 0%); transform: translate(0%, 0%);
+            border-radius: 0% calc(1vh + 1vw) 0% 0%;
+          }
+        }
+        #aboutmecontact:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <div id="actions">
@@ -42,7 +68,12 @@
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</h>
         <br>
         <h id="aboutmescrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
-        <href id="aboutmecontact"></href>
+        <a href="mailto:imnotednamode@gmail.com" id="aboutmecontact" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+    </div>
+    <div onclick="projectsClick()" onmouseover="projectsHover()" onmouseleave="projectsUnhover()" style="background-color: #c9960a; position: fixed; bottom: 0%; left: 0%; border-radius: 0% calc(1vh + 1vw) 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 projectsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s;" id="projectsdiv">
+        <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Projects</h>
+        <br>
+        <h id="projectsscrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
     </div>
 </div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);", id="ednadiv">
@@ -51,7 +82,8 @@
 </body>
 <script>
     var indice = 0;
-    var clicked = false;
+    var aboutmeclicked = false;
+    var projectsclicked = false;
     function aboutMeClick() {
         const aboutme = document.getElementById("aboutmediv");
         //aboutme.style.animation = "1.5s ease 0s 1 aboutMeOnClick";
@@ -81,55 +113,136 @@
         unscrollAboutMeText();
     };
     function aboutMeHover() {
-        if (clicked == false) {
+        if (aboutmeclicked == false) {
             const aboutme = document.getElementById("aboutmediv");
             aboutme.style.borderRadius = "calc(2vh + 2vw) 0% 0% 0%";
         };
     };
     function aboutMeUnhover() {
-        if (clicked == false) {
+        if (aboutmeclicked == false) {
             const aboutme = document.getElementById("aboutmediv");
             aboutme.style.borderRadius = "calc(1vh + 1vw) 0% 0% 0%";
         };
     };
-    const new_text = "I'm a developer with experience in python, html, c++, and java.";
+    const aboutme_text = "I'm a developer with experience in python, html, c++, and java.";
     function scrollAboutMeText() {
-        clicked = true;
+        aboutmeclicked = true;
         const aboutmetext = document.getElementById("aboutmescrolltext");
         const aboutmecontact = document.getElementById("aboutmecontact");
         time = 300;
         indice = 1;
-        for (const string of new_text.split(" ")) {
+        for (const string of aboutme_text.split(" ")) {
             setTimeout(function() {
-                if (clicked == true) {
-                    aboutmetext.textContent = new_text.split(" ").splice(0, indice).join(" ");
+                if (aboutmeclicked == true) {
+                    aboutmetext.textContent = aboutme_text.split(" ").splice(0, indice).join(" ");
                     indice = indice + 1;
                 };
             }, time);
             time = time + 100;
         };
         setTimeout(function() {
-            if (clicked == true) {
+            if (aboutmeclicked == true) {
                 aboutmecontact.textContent = "Contact me ⬏";
             };
         }, time);
     };
     function unscrollAboutMeText() {
-        clicked = false;
+        aboutmeclicked = false;
         const aboutmetext = document.getElementById("aboutmescrolltext");
         const aboutmecontact = document.getElementById("aboutmecontact");
-        console.log(indice);
         var frozen_indice = indice
         setTimeout(function() {
-            if (clicked == false) {
+            if (aboutmeclicked == false) {
                 aboutmecontact.textContent = "";
             };
         }, 0);
         time = 50;
         for (const num of Array(frozen_indice + 1).fill(0)) {
             setTimeout(function() {
-                if (clicked == false) {
-                    aboutmetext.textContent = new_text.split(" ").splice(0, frozen_indice).join(" ");
+                if (aboutmeclicked == false) {
+                    aboutmetext.textContent = aboutme_text.split(" ").splice(0, frozen_indice).join(" ");
+                    indice = frozen_indice - 1;
+                    frozen_indice = frozen_indice - 1;
+                };
+            }, time);
+            time = time + 50;
+        };
+    }
+    function projectsClick() {
+        const projects = document.getElementById("projectsdiv");
+        projects.style.position = "fixed";
+        projects.style.bottom = "50%";
+        projects.style.left = "50%";
+        projects.style.transform = "translate(-50%, 50%)";
+        projects.style.webkitTransform = "translate(-50%, 50%)";
+        projects.style.borderRadius = "calc(3vh + 3vw) calc(3vh + 3vw) calc(3vh + 3vw) calc(3vh + 3vw)";
+        projects.style.zIndex = "5";
+        projects.style.padding = "calc(2.5vh + 2.5vw)";
+        projects.setAttribute('onclick', 'projectsUnclick();');
+        scrollProjectsText();
+    };
+    function projectsUnclick() {
+        const projects = document.getElementById("projectsdiv");
+        projects.style.position = "fixed";
+        projects.style.bottom = "0%";
+        projects.style.left = "0%";
+        projects.style.transform = "translate(0%, 0%)";
+        projects.style.webkitTransform = "translate(0%, 0%)";
+        projects.style.borderRadius = "0% calc(1vh + 1vw) 0% 0%";
+        projects.style.zIndex = "5";
+        projects.style.padding = "calc(1vh + 1vw)";
+        projects.setAttribute('onclick', 'aboutMeClick();');
+        unscrollProjectsText();
+    };
+    function projectsHover() {
+        if (projectsclicked == false) {
+            const projects = document.getElementById("projectsdiv");
+            projects.style.borderRadius = "0% calc(2vh + 2vw) 0% 0%";
+        };
+    };
+    function projectsUnhover() {
+        if (projectsclicked == false) {
+            const projects = document.getElementById("projectsdiv");
+            projects.style.borderRadius = "0% calc(1vh + 1vw) 0% 0%";
+        };
+    };
+    const projects_text = "I'm a developer with experience in python, html, c++, and java.";
+    function scrollProjectsText() {
+        projectsclicked = true;
+        const aboutmetext = document.getElementById("aboutmescrolltext");
+        const aboutmecontact = document.getElementById("aboutmecontact");
+        time = 300;
+        indice = 1;
+        for (const string of projects_text.split(" ")) {
+            setTimeout(function() {
+                if (projectsclicked == true) {
+                    aboutmetext.textContent = projects_text.split(" ").splice(0, indice).join(" ");
+                    indice = indice + 1;
+                };
+            }, time);
+            time = time + 100;
+        };
+        setTimeout(function() {
+            if (projectsclicked == true) {
+                aboutmecontact.textContent = "Contact me ⬏";
+            };
+        }, time);
+    };
+    function unscrollProjectsText() {
+        projectsclicked = false;
+        const aboutmetext = document.getElementById("aboutmescrolltext");
+        const aboutmecontact = document.getElementById("aboutmecontact");
+        var frozen_indice = indice
+        setTimeout(function() {
+            if (projectsclicked == false) {
+                aboutmecontact.textContent = "";
+            };
+        }, 0);
+        time = 50;
+        for (const num of Array(frozen_indice + 1).fill(0)) {
+            setTimeout(function() {
+                if (projectsclicked == false) {
+                    aboutmetext.textContent = projects_text.split(" ").splice(0, frozen_indice).join(" ");
                     indice = frozen_indice - 1;
                     frozen_indice = frozen_indice - 1;
                 };
