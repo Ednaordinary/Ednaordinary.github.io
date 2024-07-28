@@ -42,6 +42,7 @@
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</h>
         <br>
         <h id="aboutmescrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
+        <href id="aboutmecontact"></href>
     </div>
 </div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);", id="ednadiv">
@@ -91,10 +92,11 @@
             aboutme.style.borderRadius = "calc(1vh + 1vw) 0% 0% 0%";
         };
     };
-    const new_text = "I'm a developer with experience in python, html, c++, java, and masm.";
+    const new_text = "I'm a developer with experience in python, html, c++, and java.";
     function scrollAboutMeText() {
         clicked = true;
         const aboutmetext = document.getElementById("aboutmescrolltext");
+        const aboutmecontact = document.getElementById("aboutmecontact");
         time = 300;
         indice = 1;
         for (const string of new_text.split(" ")) {
@@ -106,13 +108,24 @@
             }, time);
             time = time + 100;
         };
+        setTimeout(function() {
+            if (clicked == true) {
+                aboutmecontact.textContent = "Contact me ⬏";
+            };
+        }, time);
     };
     function unscrollAboutMeText() {
         clicked = false;
         const aboutmetext = document.getElementById("aboutmescrolltext");
-        time = 0;
+        const aboutmecontact = document.getElementById("aboutmecontact");
         console.log(indice);
         var frozen_indice = indice
+        setTimeout(function() {
+            if (clicked == false) {
+                aboutmecontact.textContent = "";
+            };
+        }, 0);
+        time = 50;
         for (const num of Array(frozen_indice + 1).fill(0)) {
             setTimeout(function() {
                 if (clicked == false) {
