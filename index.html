@@ -61,6 +61,20 @@
             border-radius: 0px;
             border-color: #dddddd;
         }
+        #projectslink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <div id="actions">
@@ -68,12 +82,21 @@
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</h>
         <br>
         <h id="aboutmescrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
+        <div id="aboutmelinebreaks", style="display: none;">
+            <br>
+            <br>
+        </div>
         <a href="mailto:imnotednamode@gmail.com" id="aboutmecontact" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
     <div onclick="projectsClick()" onmouseover="projectsHover()" onmouseleave="projectsUnhover()" style="background-color: #c9960a; position: fixed; bottom: 0%; left: 0%; border-radius: 0% calc(1vh + 1vw) 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 projectsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s;" id="projectsdiv">
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Projects</h>
         <br>
         <h id="projectsscrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
+        <div id="projectslinebreaks", style="display: none;">
+            <br>
+            <br>
+        </div>
+        <a href="" id="projectslink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
 </div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);", id="ednadiv">
@@ -81,7 +104,8 @@
 </div>
 </body>
 <script>
-    var indice = 0;
+    var aboutmeindice = 0;
+    var projectsindice = 0;
     var aboutmeclicked = false;
     var projectsclicked = false;
     function aboutMeClick() {
@@ -97,6 +121,7 @@
         aboutme.style.padding = "calc(2.5vh + 2.5vw)";
         aboutme.setAttribute('onclick', 'aboutMeUnclick();');
         scrollAboutMeText();
+        unclickOthersAboutMe();
     };
     function aboutMeUnclick() {
         const aboutme = document.getElementById("aboutmediv");
@@ -129,17 +154,24 @@
         aboutmeclicked = true;
         const aboutmetext = document.getElementById("aboutmescrolltext");
         const aboutmecontact = document.getElementById("aboutmecontact");
+        const aboutmelinebreaks = document.getElementById("aboutmelinebreaks");
         time = 300;
-        indice = 1;
+        aboutmeindice = 1;
         for (const string of aboutme_text.split(" ")) {
             setTimeout(function() {
                 if (aboutmeclicked == true) {
-                    aboutmetext.textContent = aboutme_text.split(" ").splice(0, indice).join(" ");
-                    indice = indice + 1;
+                    aboutmetext.textContent = aboutme_text.split(" ").splice(0, aboutmeindice).join(" ");
+                    aboutmeindice = aboutmeindice + 1;
                 };
             }, time);
             time = time + 100;
         };
+        setTimeout(function() {
+            if (aboutmeclicked == true) {
+                aboutmelinebreaks.style.display = "";
+            };
+        }, time);
+        time = time + 100;
         setTimeout(function() {
             if (aboutmeclicked == true) {
                 aboutmecontact.textContent = "Contact me ⬏";
@@ -150,18 +182,24 @@
         aboutmeclicked = false;
         const aboutmetext = document.getElementById("aboutmescrolltext");
         const aboutmecontact = document.getElementById("aboutmecontact");
-        var frozen_indice = indice
+        const aboutmelinebreaks = document.getElementById("aboutmelinebreaks");
+        var frozen_indice = aboutmeindice
         setTimeout(function() {
             if (aboutmeclicked == false) {
                 aboutmecontact.textContent = "";
             };
         }, 0);
-        time = 50;
+        setTimeout(function() {
+            if (aboutmeclicked == false) {
+                aboutmelinebreaks.style.display = "none";
+            };
+        }, 50);
+        time = 100;
         for (const num of Array(frozen_indice + 1).fill(0)) {
             setTimeout(function() {
                 if (aboutmeclicked == false) {
                     aboutmetext.textContent = aboutme_text.split(" ").splice(0, frozen_indice).join(" ");
-                    indice = frozen_indice - 1;
+                    aboutmeindice = frozen_indice - 1;
                     frozen_indice = frozen_indice - 1;
                 };
             }, time);
@@ -180,6 +218,7 @@
         projects.style.padding = "calc(2.5vh + 2.5vw)";
         projects.setAttribute('onclick', 'projectsUnclick();');
         scrollProjectsText();
+        unclickOthersProjects();
     };
     function projectsUnclick() {
         const projects = document.getElementById("projectsdiv");
@@ -191,7 +230,7 @@
         projects.style.borderRadius = "0% calc(1vh + 1vw) 0% 0%";
         projects.style.zIndex = "5";
         projects.style.padding = "calc(1vh + 1vw)";
-        projects.setAttribute('onclick', 'aboutMeClick();');
+        projects.setAttribute('onclick', 'projectsClick();');
         unscrollProjectsText();
     };
     function projectsHover() {
@@ -206,49 +245,72 @@
             projects.style.borderRadius = "0% calc(1vh + 1vw) 0% 0%";
         };
     };
-    const projects_text = "I'm a developer with experience in python, html, c++, and java.";
+    const projects_text = "I have various projects, mainly working with codebases like transformers and diffusers.";
     function scrollProjectsText() {
         projectsclicked = true;
-        const aboutmetext = document.getElementById("aboutmescrolltext");
-        const aboutmecontact = document.getElementById("aboutmecontact");
+        const projectstext = document.getElementById("projectsscrolltext");
+        const projectslink = document.getElementById("projectslink");
+        const projectslinebreaks = document.getElementById("projectslinebreaks");
         time = 300;
-        indice = 1;
+        projectsindice = 1;
         for (const string of projects_text.split(" ")) {
             setTimeout(function() {
                 if (projectsclicked == true) {
-                    aboutmetext.textContent = projects_text.split(" ").splice(0, indice).join(" ");
-                    indice = indice + 1;
+                    projectstext.textContent = projects_text.split(" ").splice(0, projectsindice).join(" ");
+                    projectsindice = projectsindice + 1;
                 };
             }, time);
             time = time + 100;
         };
         setTimeout(function() {
             if (projectsclicked == true) {
-                aboutmecontact.textContent = "Contact me ⬏";
+                projectslinebreaks.style.display = "";
+            };
+        }, time);
+        time = time + 100;
+        setTimeout(function() {
+            if (projectsclicked == true) {
+                projectslink.textContent = "My projects ⬏";
             };
         }, time);
     };
     function unscrollProjectsText() {
         projectsclicked = false;
-        const aboutmetext = document.getElementById("aboutmescrolltext");
-        const aboutmecontact = document.getElementById("aboutmecontact");
-        var frozen_indice = indice
+        const projectstext = document.getElementById("projectsscrolltext");
+        const projectslink = document.getElementById("projectslink");
+        const projectslinebreaks = document.getElementById("projectslinebreaks");
+        var frozen_indice = projectsindice
         setTimeout(function() {
             if (projectsclicked == false) {
-                aboutmecontact.textContent = "";
+                projectslink.textContent = "";
             };
         }, 0);
-        time = 50;
+        setTimeout(function() {
+            if (projectsclicked == false) {
+                projectslinebreaks.style.display = "none";
+            };
+        }, 50);
+        time = 100;
         for (const num of Array(frozen_indice + 1).fill(0)) {
             setTimeout(function() {
                 if (projectsclicked == false) {
-                    aboutmetext.textContent = projects_text.split(" ").splice(0, frozen_indice).join(" ");
-                    indice = frozen_indice - 1;
+                    projectstext.textContent = projects_text.split(" ").splice(0, frozen_indice).join(" ");
+                    projectsindice = frozen_indice - 1;
                     frozen_indice = frozen_indice - 1;
                 };
             }, time);
             time = time + 50;
         };
-    }
+    };
+    function unclickOthersAboutMe() {
+        if (projectsclicked == true) {
+            projectsUnclick();
+        };
+    };
+    function unclickOthersProjects() {
+        if (aboutmeclicked == true) {
+            aboutMeUnclick();
+        };
+    };
 </script>
 </html>
