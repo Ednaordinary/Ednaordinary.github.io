@@ -5,6 +5,20 @@
     <title>Projects</title>
     <style>
         @font-face { font-family: DMSans; src: url('DMSans.ttf'); font-display: block; }
+        #backlink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
         #dantelink:hover:not(.active) {
             background: #dddddd;
             border-style: solid;
@@ -20,6 +34,20 @@
             border-color: #dddddd;
         }
         #mawlink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
+        #vestalink:hover:not(.active) {
             background: #dddddd;
             border-style: solid;
             border-width: 0.5vh;
@@ -51,25 +79,37 @@
 </head>
 <body style="background-color: #E1D6CA;">
 <div>
+    <div id="backdiv" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;">
+        <header style="text-align: center; padding: calc(1vh + 1vw);">
+            <a href="index.html" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="backlink">Back ⬏</a>
+        </header>
+    </div>
     <div id="projectdante" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="danteClick()" onmouseover="danteHover()" onmouseleave="danteUnhover()">
         <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="danteheader">Dante</header>
         <header id="dantetext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="dantelinkdiv">
-            <a href="https://github.com/Ednaordinary/DanteMode" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw">Learn more ⬏</a>
+            <a href="https://github.com/Ednaordinary/DanteMode" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="dantelink">Learn more ⬏</a>
         </header>
     </div>
     <div id="projectmaw" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="mawClick()" onmouseover="mawHover()" onmouseleave="mawUnhover()">
         <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="mawheader">Maw</header>
         <header id="mawtext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="mawlinkdiv">
-            <a href="https://github.com/Ednaordinary/MawDiscord" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw">Learn more ⬏</a>
+            <a href="https://github.com/Ednaordinary/MawDiscord" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="mawlink">Learn more ⬏</a>
+        </header>
+    </div>
+    <div id="projectvesta" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="vestaClick()" onmouseover="vestaHover()" onmouseleave="vestaUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="vestaheader">Vesta</header>
+        <header id="vestatext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw);  display: none;" id="vestalinkdiv">
+            <a href="https://github.com/Ednaordinary/Vesta" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="vestalink">Learn more ⬏</a>
         </header>
     </div>
     <div id="projectednamusic" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="ednamusicClick()" onmouseover="ednamusicHover()" onmouseleave="ednamusicUnhover()">
         <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="ednamusicheader">EdnaMusic</header>
         <header id="ednamusictext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <header style="text-align: center; padding-bottom: calc(1vh + 1vw);  display: none;" id="ednamusiclinkdiv">
-            <a href="https://github.com/Ednaordinary/EdnaMusic" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw">Learn more ⬏</a>
+            <a href="https://github.com/Ednaordinary/EdnaMusic" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="ednamusiclink">Learn more ⬏</a>
         </header>
     </div>
 </div>
@@ -232,6 +272,85 @@
         const mawheader = document.getElementById("mawheader");
         mawheader.textContent = "Maw"
         mawishovered = false;
+    }
+    var vestaclicked = false;
+    var vestaindice = 0;
+    var vestahovertext = "Vesta ⬎"
+    var vestaishovered = false;
+    const vesta_newtext = "Vesta is a reverse image search bot for discord. It indexes the entire server to allow users to search for images from a text prompt."
+    function vestaClick() {
+        const vestatext = document.getElementById("vestatext");
+        vestatext.style.padding = "calc(1vh + 1vw)";
+        const projectvesta = document.getElementById("projectvesta");
+        const vestalinkdiv = document.getElementById("vestalinkdiv");
+        projectvesta.setAttribute('onclick', 'vestaUnclick();');
+        vestaclicked = true;
+        const localvestaspecifier = Math.random();
+        vestaspecifier = localvestaspecifier
+        if (vestaishovered == true) {
+            const vestaheader = document.getElementById("vestaheader");
+            vestaheader.textContent = "Vesta ⬏"
+        };
+        vestahovertext = "Vesta ⬏";
+        var clicktime = 0;
+        for (const num of Array(vesta_newtext.split(" ").length + 1 - vestaindice).fill(0)) {
+            setTimeout(function() {
+                if (vestaspecifier == localvestaspecifier) {
+                    vestatext.textContent = vesta_newtext.split(" ").splice(0, vestaindice).join(" ");
+                    vestaindice = vestaindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (vestaspecifier == localvestaspecifier) {
+                vestalinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function vestaUnclick() {
+        const vestatext = document.getElementById("vestatext");
+        const projectvesta = document.getElementById("projectvesta");
+        const vestalinkdiv = document.getElementById("vestalinkdiv");
+        projectvesta.setAttribute('onclick', 'vestaClick();');
+        vestaclicked = false;
+        const localvestaspecifier = Math.random();
+        vestaspecifier = localvestaspecifier
+        setTimeout(function() {
+            if (vestaspecifier == localvestaspecifier) {
+                vestalinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (vestaishovered == true) {
+            const vestaheader = document.getElementById("vestaheader");
+            vestaheader.textContent = "Vesta ⬎"
+        };
+        vestahovertext = "Vesta ⬎";
+        for (const string of Array(vestaindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (vestaspecifier == localvestaspecifier) {
+                    vestatext.textContent = vesta_newtext.split(" ").splice(0, vestaindice).join(" ");
+                    vestaindice = vestaindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (vestaspecifier == localvestaspecifier) {
+                vestatext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function vestaHover() {
+        const vestaheader = document.getElementById("vestaheader");
+        vestaheader.textContent = vestahovertext
+        vestaishovered = true;
+    }
+    function vestaUnhover() {
+        const vestaheader = document.getElementById("vestaheader");
+        vestaheader.textContent = "Vesta"
+        vestaishovered = false;
     }
     var ednamusicclicked = false;
     var ednamusicindice = 0;
