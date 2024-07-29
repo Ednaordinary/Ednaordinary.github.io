@@ -47,6 +47,18 @@
             border-radius: 0% calc(1vh + 1vw) 0% 0%;
           }
         }
+        @keyframes socialsOnLoad {
+          0% {
+            position: fixed; top: 50%; right: 50%;
+            -webkit-transform: translate(50%, -50%); transform: translate(50%, -50%);
+            border-radius: calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw);
+          }
+          100% {
+            position: fixed; top: 0%; right: 0%;
+            -webkit-transform: translate(0%, 0%); transform: translate(0%, 0%);
+            border-radius: 0% 0% 0% calc(1vh + 1vw);
+          }
+        }
         #aboutmecontact:hover:not(.active) {
             background: #dddddd;
             border-style: solid;
@@ -77,8 +89,9 @@
         }
     </style>
 </head>
+<body style="background-color: #E1D6CA;">
 <div id="actions">
-    <div onclick="aboutMeClick()" onmouseover="aboutMeHover()" onmouseleave="aboutMeUnhover()" style="background-color: #c9960a; position: fixed; bottom: 0%; right: 0%; border-radius: calc(1vh + 1vw) 0% 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 aboutMeOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s;" id="aboutmediv">
+    <div onclick="aboutMeClick()" onmouseover="aboutMeHover()" onmouseleave="aboutMeUnhover()" style="background-color: #c9960a; position: fixed; bottom: 0%; right: 0%; border-radius: calc(1vh + 1vw) 0% 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 aboutMeOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0); animation-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="aboutmediv">
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</h>
         <br>
         <h id="aboutmescrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
@@ -88,7 +101,7 @@
         </div>
         <a href="mailto:imnotednamode@gmail.com" id="aboutmecontact" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
-    <div onclick="projectsClick()" onmouseover="projectsHover()" onmouseleave="projectsUnhover()" style="background-color: #c9960a; position: fixed; bottom: 0%; left: 0%; border-radius: 0% calc(1vh + 1vw) 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 projectsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s;" id="projectsdiv">
+    <div onclick="projectsClick()" onmouseover="projectsHover()" onmouseleave="projectsUnhover()" style="background-color: #c9960a; position: fixed; bottom: 0%; left: 0%; border-radius: 0% calc(1vh + 1vw) 0% 0%; padding: calc(1vh + 1vw); animation: 2s ease 0s 1 projectsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0); animation-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="projectsdiv">
         <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Projects</h>
         <br>
         <h id="projectsscrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></h>
@@ -97,6 +110,10 @@
             <br>
         </div>
         <a href="" id="projectslink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+    </div>
+    <div onclick="socialsClick()" onmouseover="socialsHover()" onmouseleave="socialsUnhover()" style="background-color: #c9960a; position: fixed; top: 0%; right: 0%; border-radius: 0% 0% 0% calc(1vh + 1vw); padding: calc(1vh + 1vw); animation: 2s ease 0s 1 socialsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0); animation-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="socialsdiv">
+        <h style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Socials</h>
+        <a href="" id="scrapbooklink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
 </div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s ease 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);", id="ednadiv">
