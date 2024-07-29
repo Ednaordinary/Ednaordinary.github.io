@@ -19,6 +19,34 @@
             border-radius: 0px;
             border-color: #dddddd;
         }
+        #mawlink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
+        #ednamusiclink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <body style="background-color: #E1D6CA;">
@@ -27,7 +55,21 @@
         <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="danteheader">Dante</header>
         <header id="dantetext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="dantelinkdiv">
-            <a href="https://github.com/Ednaordinary/DanteMode" style="font-family: DMSans; font-size: calc(2vw + 2vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; display: none;" id="dantelink">Learn more ⬏</a>
+            <a href="https://github.com/Ednaordinary/DanteMode" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw">Learn more ⬏</a>
+        </header>
+    </div>
+    <div id="projectmaw" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="mawClick()" onmouseover="mawHover()" onmouseleave="mawUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="mawheader">Maw</header>
+        <header id="mawtext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="mawlinkdiv">
+            <a href="https://github.com/Ednaordinary/MawDiscord" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw">Learn more ⬏</a>
+        </header>
+    </div>
+    <div id="projectednamusic" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="ednamusicClick()" onmouseover="ednamusicHover()" onmouseleave="ednamusicUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="ednamusicheader">EdnaMusic</header>
+        <header id="ednamusictext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw);  display: none;" id="ednamusiclinkdiv">
+            <a href="https://github.com/Ednaordinary/EdnaMusic" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw">Learn more ⬏</a>
         </header>
     </div>
 </div>
@@ -42,7 +84,6 @@
         const dantetext = document.getElementById("dantetext");
         dantetext.style.padding = "calc(1vh + 1vw)";
         const projectdante = document.getElementById("projectdante");
-        const dantelink = document.getElementById("dantelink");
         const dantelinkdiv = document.getElementById("dantelinkdiv");
         projectdante.setAttribute('onclick', 'danteUnclick();');
         danteclicked = true;
@@ -65,7 +106,6 @@
         };
         setTimeout(function() {
             if (dantespecifier == localdantespecifier) {
-                dantelink.style.display = "";
                 dantelinkdiv.style.display = "";
             };
         }, clicktime);
@@ -73,7 +113,6 @@
     function danteUnclick() {
         const dantetext = document.getElementById("dantetext");
         const projectdante = document.getElementById("projectdante");
-        const dantelink = document.getElementById("dantelink");
         const dantelinkdiv = document.getElementById("dantelinkdiv");
         projectdante.setAttribute('onclick', 'danteClick();');
         danteclicked = false;
@@ -81,7 +120,6 @@
         dantespecifier = localdantespecifier
         setTimeout(function() {
             if (dantespecifier == localdantespecifier) {
-                dantelink.style.display = "none";
                 dantelinkdiv.style.display = "none";
             };
         }, 0);
@@ -115,6 +153,164 @@
         const danteheader = document.getElementById("danteheader");
         danteheader.textContent = "Dante"
         danteishovered = false;
+    }
+    var mawclicked = false;
+    var mawindice = 0;
+    var mawhovertext = "Maw ⬎"
+    var mawishovered = false;
+    const maw_newtext = "Maw is a text generation bot for discord. By using the latest model standards and using an asynchronous structure similar to Dante, Maw efficiently serves users with both assistance and character responses."
+    function mawClick() {
+        const mawtext = document.getElementById("mawtext");
+        mawtext.style.padding = "calc(1vh + 1vw)";
+        const projectmaw = document.getElementById("projectmaw");
+        const mawlinkdiv = document.getElementById("mawlinkdiv");
+        projectmaw.setAttribute('onclick', 'mawUnclick();');
+        mawclicked = true;
+        const localmawspecifier = Math.random();
+        mawspecifier = localmawspecifier
+        if (mawishovered == true) {
+            const mawheader = document.getElementById("mawheader");
+            mawheader.textContent = "Maw ⬏"
+        };
+        mawhovertext = "Maw ⬏";
+        var clicktime = 0;
+        for (const num of Array(maw_newtext.split(" ").length + 1 - mawindice).fill(0)) {
+            setTimeout(function() {
+                if (mawspecifier == localmawspecifier) {
+                    mawtext.textContent = maw_newtext.split(" ").splice(0, mawindice).join(" ");
+                    mawindice = mawindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (mawspecifier == localmawspecifier) {
+                mawlinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function mawUnclick() {
+        const mawtext = document.getElementById("mawtext");
+        const projectmaw = document.getElementById("projectmaw");
+        const mawlinkdiv = document.getElementById("mawlinkdiv");
+        projectmaw.setAttribute('onclick', 'mawClick();');
+        mawclicked = false;
+        const localmawspecifier = Math.random();
+        mawspecifier = localmawspecifier
+        setTimeout(function() {
+            if (mawspecifier == localmawspecifier) {
+                mawlinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (mawishovered == true) {
+            const mawheader = document.getElementById("mawheader");
+            mawheader.textContent = "Maw ⬎"
+        };
+        mawhovertext = "Maw ⬎";
+        for (const string of Array(mawindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (mawspecifier == localmawspecifier) {
+                    mawtext.textContent = maw_newtext.split(" ").splice(0, mawindice).join(" ");
+                    mawindice = mawindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (mawspecifier == localmawspecifier) {
+                mawtext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function mawHover() {
+        const mawheader = document.getElementById("mawheader");
+        mawheader.textContent = mawhovertext
+        mawishovered = true;
+    }
+    function mawUnhover() {
+        const mawheader = document.getElementById("mawheader");
+        mawheader.textContent = "Maw"
+        mawishovered = false;
+    }
+    var ednamusicclicked = false;
+    var ednamusicindice = 0;
+    var ednamusichovertext = "EdnaMusic ⬎"
+    var ednamusicishovered = false;
+    const ednamusic_newtext = "EdnaMusic is a music bot for discord. It uses an asynchronous structure to give users a seamless experience. It has only one command, to start a session, which also opens a thread for users to request songs. Other actions are handled entirely by buttons."
+    function ednamusicClick() {
+        const ednamusictext = document.getElementById("ednamusictext");
+        ednamusictext.style.padding = "calc(1vh + 1vw)";
+        const projectednamusic = document.getElementById("projectednamusic");
+        const ednamusiclinkdiv = document.getElementById("ednamusiclinkdiv");
+        projectednamusic.setAttribute('onclick', 'ednamusicUnclick();');
+        ednamusicclicked = true;
+        const localednamusicspecifier = Math.random();
+        ednamusicspecifier = localednamusicspecifier
+        if (ednamusicishovered == true) {
+            const ednamusicheader = document.getElementById("ednamusicheader");
+            ednamusicheader.textContent = "EdnaMusic ⬏"
+        };
+        ednamusichovertext = "EdnaMusic ⬏";
+        var clicktime = 0;
+        for (const num of Array(ednamusic_newtext.split(" ").length + 1 - ednamusicindice).fill(0)) {
+            setTimeout(function() {
+                if (ednamusicspecifier == localednamusicspecifier) {
+                    ednamusictext.textContent = ednamusic_newtext.split(" ").splice(0, ednamusicindice).join(" ");
+                    ednamusicindice = ednamusicindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (ednamusicspecifier == localednamusicspecifier) {
+                ednamusiclinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function ednamusicUnclick() {
+        const ednamusictext = document.getElementById("ednamusictext");
+        const projectednamusic = document.getElementById("projectednamusic");
+        const ednamusiclinkdiv = document.getElementById("ednamusiclinkdiv");
+        projectednamusic.setAttribute('onclick', 'ednamusicClick();');
+        ednamusicclicked = false;
+        const localednamusicspecifier = Math.random();
+        ednamusicspecifier = localednamusicspecifier
+        setTimeout(function() {
+            if (ednamusicspecifier == localednamusicspecifier) {
+                ednamusiclinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (ednamusicishovered == true) {
+            const ednamusicheader = document.getElementById("ednamusicheader");
+            ednamusicheader.textContent = "EdnaMusic ⬎"
+        };
+        ednamusichovertext = "EdnaMusic ⬎";
+        for (const string of Array(ednamusicindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (ednamusicspecifier == localednamusicspecifier) {
+                    ednamusictext.textContent = ednamusic_newtext.split(" ").splice(0, ednamusicindice).join(" ");
+                    ednamusicindice = ednamusicindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (ednamusicspecifier == localednamusicspecifier) {
+                ednamusictext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function ednamusicHover() {
+        const ednamusicheader = document.getElementById("ednamusicheader");
+        ednamusicheader.textContent = ednamusichovertext
+        ednamusicishovered = true;
+    }
+    function ednamusicUnhover() {
+        const ednamusicheader = document.getElementById("ednamusicheader");
+        ednamusicheader.textContent = "EdnaMusic"
+        ednamusicishovered = false;
     }
 </script>
 </html>
