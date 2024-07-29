@@ -5,19 +5,36 @@
     <title>Projects</title>
     <style>
         @font-face { font-family: DMSans; src: url('DMSans.ttf'); font-display: block; }
+        #dantelink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <body style="background-color: #E1D6CA;">
 <div>
-    <div id="projectdante" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw);" onclick="danteClick()" onmouseover="danteHover()" onmouseleave="danteUnhover()">
+    <div id="projectdante" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="danteClick()" onmouseover="danteHover()" onmouseleave="danteUnhover()">
         <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="danteheader">Dante</header>
         <header id="dantetext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="dantelinkdiv">
+            <a href="https://github.com/Ednaordinary/DanteMode" style="font-family: DMSans; font-size: calc(2vw + 2vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; display: none;" id="dantelink">Learn more ⬏</a>
+        </header>
     </div>
 </div>
 </body>
 <script>
     var danteclicked = false;
-    var danteindice = 1;
+    var danteindice = 0;
     var dantehovertext = "Dante ⬎"
     var danteishovered = false;
     const dante_newtext = "Dante is an image generation bot for discord. Dante uses techniques like model passthrough, model preloading, and prompt batching to achieve low latency while serving a number of models in the double digits."
@@ -25,30 +42,50 @@
         const dantetext = document.getElementById("dantetext");
         dantetext.style.padding = "calc(1vh + 1vw)";
         const projectdante = document.getElementById("projectdante");
+        const dantelink = document.getElementById("dantelink");
+        const dantelinkdiv = document.getElementById("dantelinkdiv");
         projectdante.setAttribute('onclick', 'danteUnclick();');
         danteclicked = true;
+        const localdantespecifier = Math.random();
+        dantespecifier = localdantespecifier
         if (danteishovered == true) {
             const danteheader = document.getElementById("danteheader");
             danteheader.textContent = "Dante ⬏"
         };
         dantehovertext = "Dante ⬏";
-        var time = 0;
-        for (const string of dante_newtext.split(" ")) {
+        var clicktime = 0;
+        for (const num of Array(dante_newtext.split(" ").length + 1 - danteindice).fill(0)) {
             setTimeout(function() {
-                if (danteclicked == true) {
+                if (dantespecifier == localdantespecifier) {
                     dantetext.textContent = dante_newtext.split(" ").splice(0, danteindice).join(" ");
                     danteindice = danteindice + 1;
                 };
-            }, time);
-            time = time + 100;
+            }, clicktime);
+            clicktime = clicktime + 100;
         };
+        setTimeout(function() {
+            if (dantespecifier == localdantespecifier) {
+                dantelink.style.display = "";
+                dantelinkdiv.style.display = "";
+            };
+        }, clicktime);
     };
     function danteUnclick() {
         const dantetext = document.getElementById("dantetext");
         const projectdante = document.getElementById("projectdante");
+        const dantelink = document.getElementById("dantelink");
+        const dantelinkdiv = document.getElementById("dantelinkdiv");
         projectdante.setAttribute('onclick', 'danteClick();');
         danteclicked = false;
-        var time = 0;
+        const localdantespecifier = Math.random();
+        dantespecifier = localdantespecifier
+        setTimeout(function() {
+            if (dantespecifier == localdantespecifier) {
+                dantelink.style.display = "none";
+                dantelinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
         if (danteishovered == true) {
             const danteheader = document.getElementById("danteheader");
             danteheader.textContent = "Dante ⬎"
@@ -56,18 +93,18 @@
         dantehovertext = "Dante ⬎";
         for (const string of Array(danteindice + 1).fill(0)) {
             setTimeout(function() {
-                if (danteclicked == false) {
+                if (dantespecifier == localdantespecifier) {
                     dantetext.textContent = dante_newtext.split(" ").splice(0, danteindice).join(" ");
                     danteindice = danteindice - 1;
                 };
-            }, time);
-            time = time + 100;
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
         };
         setTimeout(function() {
-            if (danteclicked == false) {
+            if (dantespecifier == localdantespecifier) {
                 dantetext.style.padding = "";
             };
-        }, time - 100);
+        }, unclicktime - 100);
     };
     function danteHover() {
         const danteheader = document.getElementById("danteheader");
