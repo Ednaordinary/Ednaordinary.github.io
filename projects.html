@@ -3,8 +3,55 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Projects</title>
+    <style>
+        @font-face { font-family: DMSans; src: url('DMSans.ttf'); font-display: block; }
+    </style>
 </head>
-<body>
-
+<body style="background-color: #E1D6CA;">
+<div>
+    <div id="projectdante" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw);" onmouseover="danteHover()" onmouseleave="danteUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;">Dante</header>
+        <header id="dantetext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+    </div>
+</div>
 </body>
+<script>
+    var dantehover = false;
+    var danteindice = 1;
+    const dante_newtext = "Dante is an image generation bot for discord."
+    function danteHover() {
+        const dantetext = document.getElementById("dantetext");
+        dantetext.style.padding = "calc(1vh + 1vw)";
+        dantehover = true;
+        var time = 0;
+        for (const string of dante_newtext.split(" ")) {
+            setTimeout(function() {
+                if (dantehover == true) {
+                    dantetext.textContent = dante_newtext.split(" ").splice(0, danteindice).join(" ");
+                    danteindice = danteindice + 1;
+                };
+            }, time);
+            time = time + 100;
+        };
+    };
+    function danteUnhover() {
+        const dantetext = document.getElementById("dantetext");
+        dantehover = false;
+        var time = 0;
+        for (const string of Array(danteindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (dantehover == false) {
+                    dantetext.textContent = dante_newtext.split(" ").splice(0, danteindice).join(" ");
+                    danteindice = danteindice - 1;
+                };
+            }, time);
+            time = time + 100;
+        };
+        setTimeout(function() {
+            if (dantehover == false) {
+                dantetext.style.padding = "";
+            };
+        }, time - 100);
+    };
+</script>
 </html>
