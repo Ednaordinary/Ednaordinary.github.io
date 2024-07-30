@@ -59,6 +59,18 @@
             border-radius: 0% 0% 0% calc(1vh + 1vw);
           }
         }
+        @keyframes blogOnLoad {
+          0% {
+            position: fixed; top: 50%; left: 50%;
+            -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
+            border-radius: calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw) calc(5vh + 5vw);
+          }
+          100% {
+            position: fixed; top: 0%; left: 0%;
+            -webkit-transform: translate(0%, 0%); transform: translate(0%, 0%);
+            border-radius: 0% 0% calc(1vh + 1vw) 0%;
+          }
+        }
         #aboutmecontact:hover:not(.active) {
             background: #dddddd;
             border-style: solid;
@@ -115,6 +127,20 @@
             border-radius: 0px;
             border-color: #dddddd;
         }
+        #bloglink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <body style="background-color: #E1D6CA;">
@@ -143,6 +169,15 @@
         <br id="socialsgitscrapbr" style="display: none;">
         <a href="https://github.com/Ednaordinary" id="githublink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
+    <div onclick="blogClick()" onmouseover="blogHover()" onmouseleave="blogUnhover()" style="background-image: linear-gradient(to bottom right, #fc7f03, #cf9d17); position: fixed; top: 0%; left: 0%; border-radius: 0% 0% calc(1vh + 1vw) 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 blogOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="blogdiv">
+        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Blog</header>
+        <header id="blogscrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <div id="bloglinebreaks" style="display: none;">
+            <br>
+            <br>
+        </div>
+        <a href="projects.html" id="bloglink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+    </div>
 </div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);" id="ednadiv">
     <h style="font-family: DMSans; font-size: calc(5vw + 15vh); animation: 1s ease 0s 1 ednaOnLoad; font-weight: 700; color: #3c4043ff;">Edna</h>
@@ -151,9 +186,11 @@
 <script>
     var aboutmeindice = 0;
     var projectsindice = 0;
+    var blogindice = 0;
     var aboutmeclicked = false;
     var projectsclicked = false;
     var socialsclicked = false;
+    var blogclicked = false;
     function aboutMeClick() {
         const aboutme = document.getElementById("aboutmediv");
         aboutme.style.position = "fixed";
@@ -427,12 +464,111 @@
             };
         }, 200);
     };
+    function blogClick() {
+        const blog = document.getElementById("blogdiv");
+        blog.style.position = "fixed";
+        blog.style.top = "50%";
+        blog.style.left = "50%";
+        blog.style.transform = "translate(-50%, -50%)";
+        blog.style.webkitTransform = "translate(-50%, -50%)";
+        blog.style.borderRadius = "calc(3vh + 3vw) calc(3vh + 3vw) calc(3vh + 3vw) calc(3vh + 3vw)";
+        blog.style.zIndex = "5";
+        blog.style.padding = "calc(2.5vh + 2.5vw)";
+        blog.setAttribute('onclick', 'blogUnclick();');
+        scrollBlogText();
+        unclickOthersBlog();
+    };
+    function blogUnclick() {
+        const blog = document.getElementById("blogdiv");
+        blog.style.position = "fixed";
+        blog.style.top = "0%";
+        blog.style.left = "0%";
+        blog.style.transform = "translate(0%, 0%)";
+        blog.style.webkitTransform = "translate(0%, 0%)";
+        blog.style.borderRadius = "0% 0% calc(1vh + 1vw) 0%";
+        blog.style.zIndex = "5";
+        blog.style.padding = "calc(1vh + 1vw)";
+        blog.setAttribute('onclick', 'blogClick();');
+        unscrollBlogText();
+    };
+    function blogHover() {
+        if (blogclicked == false) {
+            const blog = document.getElementById("blogdiv");
+            blog.style.borderRadius = "0% 0% calc(2vh + 2vw) 0%";
+        };
+    };
+    function blogUnhover() {
+        if (blogclicked == false) {
+            const blog = document.getElementById("blogdiv");
+            blog.style.borderRadius = "0% 0% calc(1vh + 1vw) 0%";
+        };
+    };
+    const blog_text = "This is my blog. If I do something super interesting, I might post it here.";
+    function scrollBlogText() {
+        blogclicked = true;
+        const blogtext = document.getElementById("blogscrolltext");
+        const bloglink = document.getElementById("bloglink");
+        const bloglinebreaks = document.getElementById("bloglinebreaks");
+        time = 300;
+        blogindice = 1;
+        for (const string of blog_text.split(" ")) {
+            setTimeout(function() {
+                if (blogclicked == true) {
+                    blogtext.textContent = blog_text.split(" ").splice(0, blogindice).join(" ");
+                    blogindice = blogindice + 1;
+                };
+            }, time);
+            time = time + 100;
+        };
+        setTimeout(function() {
+            if (blogclicked == true) {
+                bloglinebreaks.style.display = "";
+            };
+        }, time);
+        time = time + 100;
+        setTimeout(function() {
+            if (blogclicked == true) {
+                bloglink.textContent = "My blog ⬏";
+            };
+        }, time);
+    };
+    function unscrollBlogText() {
+        blogclicked = false;
+        const blogtext = document.getElementById("blogscrolltext");
+        const bloglink = document.getElementById("bloglink");
+        const bloglinebreaks = document.getElementById("bloglinebreaks");
+        var frozen_indice = blogindice
+        setTimeout(function() {
+            if (blogclicked == false) {
+                bloglink.textContent = "";
+            };
+        }, 0);
+        setTimeout(function() {
+            if (blogclicked == false) {
+                bloglinebreaks.style.display = "none";
+            };
+        }, 50);
+        time = 100;
+        for (const num of Array(frozen_indice + 1).fill(0)) {
+            setTimeout(function() {
+                if (blogclicked == false) {
+                    blogtext.textContent = blog_text.split(" ").splice(0, frozen_indice).join(" ");
+                    blogindice = frozen_indice - 1;
+                    frozen_indice = frozen_indice - 1;
+                };
+            }, time);
+            time = time + 50;
+        };
+    };
     function unclickOthersAboutMe() {
         if (projectsclicked == true) {
             projectsUnclick();
         };
         if (socialsclicked == true) {
             socialsUnclick();
+        };
+        if (blogclicked == true) {
+            blogUnclick();
         };
     };
     function unclickOthersProjects() {
@@ -442,6 +578,9 @@
         if (socialsclicked == true) {
             socialsUnclick();
         };
+        if (blogclicked == true) {
+            blogUnclick();
+        };
     };
     function unclickOthersSocials() {
         if (aboutmeclicked == true) {
@@ -449,6 +588,20 @@
         };
         if (projectsclicked == true) {
             projectsUnclick();
+        };
+        if (blogclicked == true) {
+            blogUnclick();
+        };
+    };
+    function unclickOthersBlog() {
+        if (aboutmeclicked == true) {
+            aboutMeUnclick();
+        };
+        if (projectsclicked == true) {
+            projectsUnclick();
+        };
+        if (socialsclicked == true) {
+            socialsUnclick();
         };
     };
 </script>
