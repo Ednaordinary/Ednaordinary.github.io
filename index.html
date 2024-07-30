@@ -101,6 +101,20 @@
             border-radius: 0px;
             border-color: #dddddd;
         }
+        #githublink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <body style="background-color: #E1D6CA;">
@@ -126,6 +140,8 @@
     <div onclick="socialsClick()" onmouseover="socialsHover()" onmouseleave="socialsUnhover()" style="background-image: linear-gradient(to bottom left, #fc7f03, #cf9d17); position: fixed; top: 0%; right: 0%; border-radius: 0% 0% 0% calc(1vh + 1vw); padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 socialsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="socialsdiv">
         <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Socials</header>
         <a href="https://scrapbook.hackclub.com/Edna" id="scrapbooklink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+        <br id="socialsgitscrapbr" style="display: none;">
+        <a href="https://github.com/Ednaordinary" id="githublink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
 </div>
 <div style="background-image: linear-gradient(to bottom left, #dadedd, #a3a6a5); position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); animation: 1s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 ednaBackgroundOnLoad; border-radius: calc(2.5vw + 2.5vh); z-index: 2; padding: calc(1vh + 1vw);" id="ednadiv">
@@ -372,22 +388,44 @@
     function scrollSocialsText() {
         socialsclicked = true;
         const scrapbooklink = document.getElementById("scrapbooklink");
-        time = 300;
+        const githublink = document.getElementById("githublink");
+        const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
         setTimeout(function() {
             if (socialsclicked == true) {
                 scrapbooklink.textContent = "Scrapbook ⬏";
             };
-        }, time);
+        }, 300);
+        setTimeout(function() {
+            if (socialsclicked == true) {
+                socialsgitscrapbr.style.display = "";
+            };
+        }, 400);
+        setTimeout(function() {
+            if (socialsclicked == true) {
+                githublink.textContent = "Github ⬏";
+            };
+        }, 500);
     };
     function unscrollSocialsText() {
         socialsclicked = false;
         const scrapbooklink = document.getElementById("scrapbooklink");
-        time = 0;
+        const githublink = document.getElementById("githublink");
+        const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
         setTimeout(function() {
             if (socialsclicked == false) {
                 scrapbooklink.textContent = "";
             };
-        }, time);
+        }, 0);
+        setTimeout(function() {
+            if (socialsclicked == false) {
+                socialsgitscrapbr.style.display = "none";
+            };
+        }, 100);
+        setTimeout(function() {
+            if (socialsclicked == false) {
+                githublink.textContent = "";
+            };
+        }, 200);
     };
     function unclickOthersAboutMe() {
         if (projectsclicked == true) {

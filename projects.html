@@ -75,6 +75,20 @@
             border-radius: 0px;
             border-color: #dddddd;
         }
+        #rolldirlink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
     </style>
 </head>
 <body style="background-color: #E1D6CA;">
@@ -110,6 +124,13 @@
         <header id="ednamusictext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <header style="text-align: center; padding-bottom: calc(1vh + 1vw);  display: none;" id="ednamusiclinkdiv">
             <a href="https://github.com/Ednaordinary/EdnaMusic" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="ednamusiclink">Learn more ⬏</a>
+        </header>
+    </div>
+    <div id="projectrolldir" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="rolldirClick()" onmouseover="rolldirHover()" onmouseleave="rolldirUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="rolldirheader">Rolling Directory</header>
+        <header id="rolldirtext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw);  display: none;" id="rolldirlinkdiv">
+            <a href="https://github.com/Ednaordinary/RollingDirectory" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="rolldirlink">Learn more ⬏</a>
         </header>
     </div>
 </div>
@@ -430,6 +451,85 @@
         const ednamusicheader = document.getElementById("ednamusicheader");
         ednamusicheader.textContent = "EdnaMusic"
         ednamusicishovered = false;
+    }
+    var rolldirclicked = false;
+    var rolldirindice = 0;
+    var rolldirhovertext = "Rolling Directory ⬎"
+    var rolldirishovered = false;
+    const rolldir_newtext = "Rolling Directory is a discord bot for organizing channels with new messages from the last 24 hours in a server."
+    function rolldirClick() {
+        const rolldirtext = document.getElementById("rolldirtext");
+        rolldirtext.style.padding = "calc(1vh + 1vw)";
+        const projectrolldir = document.getElementById("projectrolldir");
+        const rolldirlinkdiv = document.getElementById("rolldirlinkdiv");
+        projectrolldir.setAttribute('onclick', 'rolldirUnclick();');
+        rolldirclicked = true;
+        const localrolldirspecifier = Math.random();
+        rolldirspecifier = localrolldirspecifier
+        if (rolldirishovered == true) {
+            const rolldirheader = document.getElementById("rolldirheader");
+            rolldirheader.textContent = "Rolling Directory ⬏"
+        };
+        rolldirhovertext = "Rolling Directory ⬏";
+        var clicktime = 0;
+        for (const num of Array(rolldir_newtext.split(" ").length + 1 - rolldirindice).fill(0)) {
+            setTimeout(function() {
+                if (rolldirspecifier == localrolldirspecifier) {
+                    rolldirtext.textContent = rolldir_newtext.split(" ").splice(0, rolldirindice).join(" ");
+                    rolldirindice = rolldirindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (rolldirspecifier == localrolldirspecifier) {
+                rolldirlinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function rolldirUnclick() {
+        const rolldirtext = document.getElementById("rolldirtext");
+        const projectrolldir = document.getElementById("projectrolldir");
+        const rolldirlinkdiv = document.getElementById("rolldirlinkdiv");
+        projectrolldir.setAttribute('onclick', 'rolldirClick();');
+        rolldirclicked = false;
+        const localrolldirspecifier = Math.random();
+        rolldirspecifier = localrolldirspecifier
+        setTimeout(function() {
+            if (rolldirspecifier == localrolldirspecifier) {
+                rolldirlinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (rolldirishovered == true) {
+            const rolldirheader = document.getElementById("rolldirheader");
+            rolldirheader.textContent = "Rolling Directory ⬎"
+        };
+        rolldirhovertext = "Rolling Directory ⬎";
+        for (const string of Array(rolldirindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (rolldirspecifier == localrolldirspecifier) {
+                    rolldirtext.textContent = rolldir_newtext.split(" ").splice(0, rolldirindice).join(" ");
+                    rolldirindice = rolldirindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (rolldirspecifier == localrolldirspecifier) {
+                rolldirtext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function rolldirHover() {
+        const rolldirheader = document.getElementById("rolldirheader");
+        rolldirheader.textContent = rolldirhovertext
+        rolldirishovered = true;
+    }
+    function rolldirUnhover() {
+        const rolldirheader = document.getElementById("rolldirheader");
+        rolldirheader.textContent = "Rolling Directory"
+        rolldirishovered = false;
     }
 </script>
 </html>
