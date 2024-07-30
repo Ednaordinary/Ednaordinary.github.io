@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog by Edna</title>
+    <style>
+        @font-face { font-family: DMSans; src: url('DMSans.ttf'); font-display: block; }
+        #backlink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
+        }
+    </style>
 </head>
-<body>
-
+<body style="background-color: #E1D6CA;">
+    <div id="backdiv" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;">
+        <header style="text-align: center; padding: calc(1vh + 1vw);">
+            <a href="index.html" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="backlink">Back ⬏</a>
+        </header>
+    </div>
 </body>
 </html>

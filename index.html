@@ -146,7 +146,7 @@
 <body style="background-color: #E1D6CA;">
 <div id="actions">
     <div onclick="aboutMeClick()" onmouseover="aboutMeHover()" onmouseleave="aboutMeUnhover()" style="background-image: linear-gradient(to top left, #fc7f03, #cf9d17); position: fixed; bottom: 0%; right: 0%; border-radius: calc(1vh + 1vw) 0% 0% 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 aboutMeOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="aboutmediv">
-        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">About me</header>
+        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9); color: black;" id="aboutmeheader">About me</header>
         <header id="aboutmescrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <div id="aboutmelinebreaks" style="display: none;">
             <br>
@@ -155,7 +155,7 @@
         <a href="mailto:imnotednamode@gmail.com" id="aboutmecontact" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
     <div onclick="projectsClick()" onmouseover="projectsHover()" onmouseleave="projectsUnhover()" style="background-image: linear-gradient(to top right, #fc7f03, #cf9d17); position: fixed; bottom: 0%; left: 0%; border-radius: 0% calc(1vh + 1vw) 0% 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 projectsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="projectsdiv">
-        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Projects</header>
+        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9); color: black;" id="projectheader">Projects</header>
         <header id="projectsscrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <div id="projectslinebreaks" style="display: none;">
             <br>
@@ -164,13 +164,13 @@
         <a href="projects.html" id="projectslink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
     <div onclick="socialsClick()" onmouseover="socialsHover()" onmouseleave="socialsUnhover()" style="background-image: linear-gradient(to bottom left, #fc7f03, #cf9d17); position: fixed; top: 0%; right: 0%; border-radius: 0% 0% 0% calc(1vh + 1vw); padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 socialsOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="socialsdiv">
-        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Socials</header>
+        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9); color: black;" id="socialsheader">Socials</header>
         <a href="https://scrapbook.hackclub.com/Edna" id="scrapbooklink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
         <br id="socialsgitscrapbr" style="display: none;">
         <a href="https://github.com/Ednaordinary" id="githublink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
     <div onclick="blogClick()" onmouseover="blogHover()" onmouseleave="blogUnhover()" style="background-image: linear-gradient(to bottom right, #fc7f03, #cf9d17); position: fixed; top: 0%; left: 0%; border-radius: 0% 0% calc(1vh + 1vw) 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 blogOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="blogdiv">
-        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh);">Blog</header>
+        <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9); color: black;" id="blogheader">Blog</header>
         <header id="blogscrolltext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <div id="bloglinebreaks" style="display: none;">
             <br>
@@ -204,6 +204,8 @@
         aboutme.setAttribute('onclick', 'aboutMeUnclick();');
         scrollAboutMeText();
         unclickOthersAboutMe();
+        const aboutmeheader = document.getElementById("aboutmeheader");
+        aboutmeheader.style.fontWeight = "700";
     };
     function aboutMeUnclick() {
         const aboutme = document.getElementById("aboutmediv");
@@ -217,17 +219,23 @@
         aboutme.style.padding = "calc(1vh + 1vw)";
         aboutme.setAttribute('onclick', 'aboutMeClick();');
         unscrollAboutMeText();
+        const aboutmeheader = document.getElementById("aboutmeheader");
+        aboutmeheader.style.fontWeight = "500";
     };
     function aboutMeHover() {
         if (aboutmeclicked == false) {
             const aboutme = document.getElementById("aboutmediv");
             aboutme.style.borderRadius = "calc(2vh + 2vw) 0% 0% 0%";
+            const aboutmeheader = document.getElementById("aboutmeheader");
+            aboutmeheader.style.fontWeight = "700";
         };
     };
     function aboutMeUnhover() {
         if (aboutmeclicked == false) {
             const aboutme = document.getElementById("aboutmediv");
             aboutme.style.borderRadius = "calc(1vh + 1vw) 0% 0% 0%";
+            const aboutmeheader = document.getElementById("aboutmeheader");
+            aboutmeheader.style.fontWeight = "500";
         };
     };
     const aboutme_text = "I'm a developer with experience in python, html, c++, and java.";
@@ -300,6 +308,8 @@
         projects.setAttribute('onclick', 'projectsUnclick();');
         scrollProjectsText();
         unclickOthersProjects();
+        const projectheader = document.getElementById("projectheader");
+        projectheader.style.fontWeight = "700";
     };
     function projectsUnclick() {
         const projects = document.getElementById("projectsdiv");
@@ -313,17 +323,23 @@
         projects.style.padding = "calc(1vh + 1vw)";
         projects.setAttribute('onclick', 'projectsClick();');
         unscrollProjectsText();
+        const projectheader = document.getElementById("projectheader");
+        projectheader.style.fontWeight = "500";
     };
     function projectsHover() {
         if (projectsclicked == false) {
             const projects = document.getElementById("projectsdiv");
+            const projectheader = document.getElementById("projectheader");
             projects.style.borderRadius = "0% calc(2vh + 2vw) 0% 0%";
+            projectheader.style.fontWeight = "700";
         };
     };
     function projectsUnhover() {
         if (projectsclicked == false) {
             const projects = document.getElementById("projectsdiv");
             projects.style.borderRadius = "0% calc(1vh + 1vw) 0% 0%";
+            const projectheader = document.getElementById("projectheader");
+            projectheader.style.fontWeight = "500";
         };
     };
     const projects_text = "I have various projects, mainly working with codebases like transformers and diffusers.";
@@ -396,6 +412,8 @@
         socials.setAttribute('onclick', 'socialsUnclick();');
         scrollSocialsText();
         unclickOthersSocials();
+        const socialsheader = document.getElementById("socialsheader");
+        socialsheader.style.fontWeight = "700";
     };
     function socialsUnclick() {
         const socials = document.getElementById("socialsdiv");
@@ -409,17 +427,23 @@
         socials.style.padding = "calc(1vh + 1vw)";
         socials.setAttribute('onclick', 'socialsClick();');
         unscrollSocialsText();
+        const socialsheader = document.getElementById("socialsheader");
+        socialsheader.style.fontWeight = "500";
     };
     function socialsHover() {
         if (socialsclicked == false) {
             const socials = document.getElementById("socialsdiv");
             socials.style.borderRadius = "0% 0% 0% calc(2vh + 2vw)";
+            const socialsheader = document.getElementById("socialsheader");
+            socialsheader.style.fontWeight = "700";
         };
     };
     function socialsUnhover() {
         if (socialsclicked == false) {
             const socials = document.getElementById("socialsdiv");
             socials.style.borderRadius = "0% 0% 0% calc(1vh + 1vw)";
+            const socialsheader = document.getElementById("socialsheader");
+            socialsheader.style.fontWeight = "500";
         };
     };
     function scrollSocialsText() {
@@ -477,6 +501,8 @@
         blog.setAttribute('onclick', 'blogUnclick();');
         scrollBlogText();
         unclickOthersBlog();
+        const blogheader = document.getElementById("blogheader");
+        blogheader.style.fontWeight = "700";
     };
     function blogUnclick() {
         const blog = document.getElementById("blogdiv");
@@ -490,17 +516,23 @@
         blog.style.padding = "calc(1vh + 1vw)";
         blog.setAttribute('onclick', 'blogClick();');
         unscrollBlogText();
+        const blogheader = document.getElementById("blogheader");
+        blogheader.style.fontWeight = "500";
     };
     function blogHover() {
         if (blogclicked == false) {
             const blog = document.getElementById("blogdiv");
             blog.style.borderRadius = "0% 0% calc(2vh + 2vw) 0%";
+            const blogheader = document.getElementById("blogheader");
+            blogheader.style.fontWeight = "700";
         };
     };
     function blogUnhover() {
         if (blogclicked == false) {
             const blog = document.getElementById("blogdiv");
             blog.style.borderRadius = "0% 0% calc(1vh + 1vw) 0%";
+            const blogheader = document.getElementById("blogheader");
+            blogheader.style.fontWeight = "500";
         };
     };
     const blog_text = "This is my blog. If I do something super interesting, I might post it here.";

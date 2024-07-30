@@ -11,6 +11,7 @@
             border-width: 0.5vh;
             border-radius: 25px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
         }
         .active {
             background: #d5a543;
@@ -18,6 +19,7 @@
             border-width: 0vw;
             border-radius: 0px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
         }
         #dantelink:hover:not(.active) {
             background: #dddddd;
@@ -25,6 +27,7 @@
             border-width: 0.5vh;
             border-radius: 25px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
         }
         .active {
             background: #d5a543;
@@ -32,6 +35,7 @@
             border-width: 0vw;
             border-radius: 0px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
         }
         #mawlink:hover:not(.active) {
             background: #dddddd;
@@ -39,6 +43,7 @@
             border-width: 0.5vh;
             border-radius: 25px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
         }
         .active {
             background: #d5a543;
@@ -46,6 +51,7 @@
             border-width: 0vw;
             border-radius: 0px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
         }
         #vestalink:hover:not(.active) {
             background: #dddddd;
@@ -53,6 +59,7 @@
             border-width: 0.5vh;
             border-radius: 25px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
         }
         .active {
             background: #d5a543;
@@ -60,6 +67,7 @@
             border-width: 0vw;
             border-radius: 0px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
         }
         #ednamusiclink:hover:not(.active) {
             background: #dddddd;
@@ -67,6 +75,7 @@
             border-width: 0.5vh;
             border-radius: 25px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
         }
         .active {
             background: #d5a543;
@@ -74,6 +83,7 @@
             border-width: 0vw;
             border-radius: 0px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
         }
         #rolldirlink:hover:not(.active) {
             background: #dddddd;
@@ -81,6 +91,7 @@
             border-width: 0.5vh;
             border-radius: 25px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
         }
         .active {
             background: #d5a543;
@@ -88,6 +99,7 @@
             border-width: 0vw;
             border-radius: 0px;
             border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
         }
     </style>
 </head>
@@ -99,7 +111,7 @@
         </header>
     </div>
     <div id="projectdante" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="danteClick()" onmouseover="danteHover()" onmouseleave="danteUnhover()">
-        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center;" id="danteheader">Dante</header>
+        <header style="background-color: transparent; font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center; transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9);" id="danteheader">Dante</header>
         <header id="dantetext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
         <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="dantelinkdiv">
             <a href="https://github.com/Ednaordinary/DanteMode" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="dantelink">Learn more ⬏</a>
@@ -208,11 +220,13 @@
     function danteHover() {
         const danteheader = document.getElementById("danteheader");
         danteheader.textContent = dantehovertext
+        danteheader.style.fontWeight = "700";
         danteishovered = true;
     }
     function danteUnhover() {
         const danteheader = document.getElementById("danteheader");
         danteheader.textContent = "Dante"
+        danteheader.style.fontWeight = "500";
         danteishovered = false;
     }
     var mawclicked = false;
