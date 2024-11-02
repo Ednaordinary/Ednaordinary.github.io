@@ -127,6 +127,20 @@
             border-radius: 0px;
             border-color: #dddddd;
         }
+        #emaillink:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+        }
         #bloglink:hover:not(.active) {
             background: #dddddd;
             border-style: solid;
@@ -168,6 +182,8 @@
         <a href="https://scrapbook.hackclub.com/Edna" id="scrapbooklink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
         <br id="socialsgitscrapbr" style="display: none;">
         <a href="https://github.com/Ednaordinary" id="githublink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+        <br id="socialsscrapemailbr" style="display: none;">
+        <a href="mailto:imnotednamode@gmail.com" id="emaillink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
     </div>
     <div onclick="blogClick()" onmouseover="blogHover()" onmouseleave="blogUnhover()" style="background-image: linear-gradient(to bottom right, #fc7f03, #cf9d17); position: fixed; top: 0%; left: 0%; border-radius: 0% 0% calc(1vh + 1vw) 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 blogOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="blogdiv">
         <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9); color: black;" id="blogheader">Blog</header>
@@ -450,7 +466,9 @@
         socialsclicked = true;
         const scrapbooklink = document.getElementById("scrapbooklink");
         const githublink = document.getElementById("githublink");
+        const emaillink = document.getElementById("emaillink");
         const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
+        const socialsscrapemailbr = document.getElementById("socialsscrapemailbr");
         setTimeout(function() {
             if (socialsclicked == true) {
                 scrapbooklink.textContent = "Scrapbook ⬏";
@@ -466,12 +484,24 @@
                 githublink.textContent = "Github ⬏";
             };
         }, 500);
+        setTimeout(function() {
+            if (socialsclicked == true) {
+                socialsscrapemailbr.style.display = "";
+            };
+        }, 600);
+        setTimeout(function() {
+            if (socialsclicked == true) {
+                emaillink.textContent = "Email ⬏";
+            };
+        }, 700);
     };
     function unscrollSocialsText() {
         socialsclicked = false;
         const scrapbooklink = document.getElementById("scrapbooklink");
         const githublink = document.getElementById("githublink");
+        const emaillink = document.getElementById("emaillink");
         const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
+        const socialsscrapemailbr = document.getElementById("socialsscrapemailbr");
         setTimeout(function() {
             if (socialsclicked == false) {
                 scrapbooklink.textContent = "";
@@ -487,6 +517,16 @@
                 githublink.textContent = "";
             };
         }, 200);
+        setTimeout(function() {
+            if (socialsclicked == false) {
+                socialsscrapemailbr.style.display = "none";
+            };
+        }, 300);
+        setTimeout(function() {
+            if (socialsclicked == false) {
+                emaillink.textContent = "";
+            };
+        }, 400);
     };
     function blogClick() {
         const blog = document.getElementById("blogdiv");
