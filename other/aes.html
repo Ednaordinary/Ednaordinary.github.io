@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AES</title>
+    <style>
+        @font-face { font-family: DMSans; src: url('../DMSans.ttf'); font-display: block; }
+        p {
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
+        }
+        a:hover:not(.active) {
+            background: #dddddd;
+            border-style: solid;
+            border-width: 0.5vh;
+            border-radius: 25px;
+            border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 700;
+        }
+        .active {
+            background: #d5a543;
+            border-style: solid;
+            border-width: 0vw;
+            border-radius: 0px;
+            border-color: #dddddd;
+            font-family: DMSans; font-size: calc(1.5vw + 1.5vh); font-weight: 100;
+        }
+    </style>
+</head>
+<body>
+  <p id="hi">hi its me!<p/>
+  <p id="crypt"><p/>
+  <a href="../index.html" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw; border-radius: calc(1vh + 1vw);" id="learnmore">Learn More ⬏</a>
+</body>
+<script>
+  let key;
+  let iv;
+  let dec = new TextDecoder();
+  let enc = new TextEncoder();
+  function b64Encode(bytes) {
+    return btoa(String.fromCharCode(...new Uint8Array(bytes)));
+  }
+  function b64Decode(str) {
+    return new Uint8Array(Array.from(atob(str)).map(x => x.charCodeAt(0)))
+  }
+  function getMessage() {
+    let message = "1TkzAh1AAxmOl2YK9s6OxI71OY4b3yQjk6g0NjD04YH8uAYGrgRlQZbpHrgpxiDu60foXEN4b1urqpefzyXAzyJj8vIJyIy2gLFtOfVl11pdiaQI05+ZIYPVElN1Zd+PxODIIt+optXNGoG5ljo/B9l6DV45snVxA73DdytbV+HkgZxStYcMqaU1RCmgonfhrxizvrwYI/f796C4mthwqkT/F+QjjLG62FFKIr0bCSEyRJI7f89oc/cSPUU=";
+    return b64Decode(message);
+  }
+  async function decryptMessage(key, iv) { 
+    return await window.crypto.subtle.decrypt(
+      {
+        name: "AES-GCM",
+        iv: b64Decode(iv.replace(" ", "+")),
+      },
+      await window.crypto.subtle.importKey("raw", b64Decode(key.replace(" ", '+')), "AES-GCM", true, ["encrypt", "decrypt"]),
+      getMessage()
+    );
+  }
+  const cryptElement = document.getElementById("crypt");
+  const params = window.location.search;
+  const idxParams = new URLSearchParams(params);
+  key = idxParams.get('key');
+  iv = idxParams.get('iv');
+  console.log(key);
+  console.log(iv);
+  decryptMessage(key, iv).then(text => crypt.textContent = dec.decode(text));
+</script>
