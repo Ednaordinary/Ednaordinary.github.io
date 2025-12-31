@@ -189,17 +189,17 @@
         <br id="blocksbr" style="display: none;">
         <marquee id="88x31" direction="right" behavior="alternate" style="display: none;">
           <a href="https://edna.land">
-            <img src="/88x31.png"></img>
-        </a>
-        <a href="https://matdoes.dev">
-            <img src="/88x31/mat.png"></img>
-        </a>
-        <a href="https://goldenstack.net/">
-            <img src="/88x31/golden.png"></img>
-        </a>
-        <a href="https://freja-x3.neocities.org/">
-            <img src="/88x31/freja.png"></img>
-        </a>
+              <img src="/88x31.png"></img>
+          </a>
+          <a href="https://matdoes.dev">
+              <img src="/88x31/mat.png"></img>
+          </a>
+          <a href="https://goldenstack.net/">
+              <img src="/88x31/golden.png"></img>
+          </a>
+          <a href="https://freja-x3.neocities.org/">
+              <img src="/88x31/freja.png"></img>
+          </a>
         </marquee>
     </div>
     <div onclick="blogClick()" onmouseover="blogHover()" onmouseleave="blogUnhover()" style="background-image: linear-gradient(to bottom right, #fc7f03, #cf9d17); position: fixed; top: 0%; left: 0%; border-radius: 0% 0% calc(1vh + 1vw) 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 blogOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="blogdiv">
@@ -515,12 +515,12 @@
         }, 700);
         setTimeout(function() {
             if (socialsclicked == true) {
-                blocksbr.style = "";
+                blocksbr.style.display = "";
             };
         }, 800);
         setTimeout(function() {
             if (socialsclicked == true) {
-                blocks.style = "";
+                blocks.style = "max-width: 100%; overflow: hidden;";
             };
         }, 900);
     };
