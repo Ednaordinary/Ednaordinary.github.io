@@ -186,11 +186,17 @@
         <a href="https://github.com/Ednaordinary" id="githublink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
         <br id="socialsscrapemailbr" style="display: none;">
         <a href="mailto:imnotednamode+site@gmail.com" id="emaillink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+        <br id="blocksbr" style="display: none;">
         <marquee id="88x31" direction="right" behavior="alternate" style="display: none;">
           <a href="https://edna.land">
             <img src="/88x31.png"></img>
-          <a href="https://matdoes.dev">
+        </a>
+        <a href="https://matdoes.dev">
             <img src="/88x31/mat.png"></img>
+        </a>
+        <a href="https://goldenstack.net/">
+            <img src="/88x31/golden.png"></img>
+        </a>
         </marquee>
     </div>
     <div onclick="blogClick()" onmouseover="blogHover()" onmouseleave="blogUnhover()" style="background-image: linear-gradient(to bottom right, #fc7f03, #cf9d17); position: fixed; top: 0%; left: 0%; border-radius: 0% 0% calc(1vh + 1vw) 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 blogOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="blogdiv">
@@ -262,7 +268,7 @@
             aboutmeheader.style.fontWeight = "500";
         };
     };
-    const aboutme_text = "I'm a passionate developer looking to build cool projects. I enjoy working with others to find innovative solutions. I have experience in python, java, c++, shell, and more.";
+    const aboutme_text = "I'm a passionate developer looking to build cool projects. I enjoy working with others to find innovative solutions. I have experience in Python, Rust, Java, C++, Bash, and more.";
     function scrollAboutMeText() {
         aboutmeclicked = true;
         const aboutmetext = document.getElementById("aboutmescrolltext");
@@ -366,7 +372,7 @@
             projectheader.style.fontWeight = "500";
         };
     };
-    const projects_text = "I have various projects, mainly working with codebases like transformers and diffusers.";
+    const projects_text = "I have various projects, spanning my interests. I've worked on everything from image search in discord to scanning my entire college network to encoding Jake Gyllenhaal in a million checkboxes.";
     function scrollProjectsText() {
         projectsclicked = true;
         const projectstext = document.getElementById("projectsscrolltext");
@@ -477,6 +483,7 @@
         const emaillink = document.getElementById("emaillink");
         const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
         const socialsscrapemailbr = document.getElementById("socialsscrapemailbr");
+        const blocksbr = document.getElementById("blocksbr");
         const blocks = document.getElementById("88x31");
         setTimeout(function() {
             if (socialsclicked == true) {
@@ -505,9 +512,14 @@
         }, 700);
         setTimeout(function() {
             if (socialsclicked == true) {
-                blocks.style = "";
+                blocksbr.style = "";
             };
         }, 800);
+        setTimeout(function() {
+            if (socialsclicked == true) {
+                blocks.style = "";
+            };
+        }, 900);
     };
     function unscrollSocialsText() {
         socialsclicked = false;
@@ -516,6 +528,7 @@
         const emaillink = document.getElementById("emaillink");
         const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
         const socialsscrapemailbr = document.getElementById("socialsscrapemailbr");
+        const blocksbr = document.getElementById("blocksbr");
         const blocks = document.getElementById("88x31");
         setTimeout(function() {
             if (socialsclicked == false) {
@@ -544,9 +557,14 @@
         }, 400);
         setTimeout(function() {
             if (socialsclicked == false) {
-                blocks.style = "display: none;";
+                blocksbr.style = "display: none;";
             };
         }, 500);
+        setTimeout(function() {
+            if (socialsclicked == false) {
+                blocks.style = "display: none;";
+            };
+        }, 600);
     };
     function blogClick() {
         const blog = document.getElementById("blogdiv");
