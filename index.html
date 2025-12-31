@@ -186,6 +186,12 @@
         <a href="https://github.com/Ednaordinary" id="githublink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
         <br id="socialsscrapemailbr" style="display: none;">
         <a href="mailto:imnotednamode+site@gmail.com" id="emaillink" style="font-family: DMSans; font-size: calc(1vw + 1vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s;"></a>
+        <marquee id="88x31" direction="right" behavior="alternate" style="display: none;">
+          <a href="https://edna.land">
+            <img src="/88x31.png"></img>
+          <a href="https://matdoes.dev">
+            <img src="/88x31/mat.png"></img>
+        </marquee>
     </div>
     <div onclick="blogClick()" onmouseover="blogHover()" onmouseleave="blogUnhover()" style="background-image: linear-gradient(to bottom right, #fc7f03, #cf9d17); position: fixed; top: 0%; left: 0%; border-radius: 0% 0% calc(1vh + 1vw) 0%; padding: calc(1vh + 1vw); animation: 2s cubic-bezier(0.47, 0.13, 0.31, 1.0) 0s 1 blogOnLoad; z-index: 1; cursor: pointer; transition: all 1.5s; transition-timing-function: cubic-bezier(0.47, 0.13, 0.31, 1.0);" id="blogdiv">
         <header style="font-family: DMSans; font-weight: 500; font-size: calc(2.5vw + 2.5vh); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9); color: black;" id="blogheader">Blog</header>
@@ -471,6 +477,7 @@
         const emaillink = document.getElementById("emaillink");
         const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
         const socialsscrapemailbr = document.getElementById("socialsscrapemailbr");
+        const blocks = document.getElementById("88x31");
         setTimeout(function() {
             if (socialsclicked == true) {
                 scrapbooklink.textContent = "Scrapbook ⬏";
@@ -496,6 +503,11 @@
                 emaillink.textContent = "Email ⬏";
             };
         }, 700);
+        setTimeout(function() {
+            if (socialsclicked == true) {
+                blocks.style = "";
+            };
+        }, 800);
     };
     function unscrollSocialsText() {
         socialsclicked = false;
@@ -504,6 +516,7 @@
         const emaillink = document.getElementById("emaillink");
         const socialsgitscrapbr = document.getElementById("socialsgitscrapbr");
         const socialsscrapemailbr = document.getElementById("socialsscrapemailbr");
+        const blocks = document.getElementById("88x31");
         setTimeout(function() {
             if (socialsclicked == false) {
                 scrapbooklink.textContent = "";
@@ -529,6 +542,11 @@
                 emaillink.textContent = "";
             };
         }, 400);
+        setTimeout(function() {
+            if (socialsclicked == false) {
+                blocks.style = "display: none;";
+            };
+        }, 500);
     };
     function blogClick() {
         const blog = document.getElementById("blogdiv");
