@@ -111,6 +111,27 @@
             <a href="index.html" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw; border-radius: calc(1vh + 1vw);" id="backlink">Back ⬏</a>
         </header>
     </div>
+    <div id="projectconvoy" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="convoyClick()" onmouseover="convoyHover()" onmouseleave="convoyUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center; border-radius: calc(1vh + 1vw); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9);" id="convoyheader">Convoy</header>
+        <header id="convoytext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="convoylinkdiv">
+            <a href="https://github.com/Ednaordinary/net-enum" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="convoylink">Learn more ⬏</a>
+        </header>
+    </div>
+    <div id="projectpithing" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="pithingClick()" onmouseover="pithingHover()" onmouseleave="pithingUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center; border-radius: calc(1vh + 1vw); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9);" id="pithingheader">Pi-thing</header>
+        <header id="pithingtext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="pithinglinkdiv">
+            <a href="https://github.com/Ednaordinary/pi-thing" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="pithinglink">Learn more ⬏</a>
+        </header>
+    </div>
+    <div id="projectomcb" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="omcbClick()" onmouseover="omcbHover()" onmouseleave="omcbUnhover()">
+        <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center; border-radius: calc(1vh + 1vw); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9);" id="omcbheader">Omcb</header>
+        <header id="omcbtext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
+        <header style="text-align: center; padding-bottom: calc(1vh + 1vw); display: none;" id="omcblinkdiv">
+            <a href="https://eieio.games/blog/the-secret-inside-one-million-checkboxes/" style="font-family: DMSans; font-size: calc(1.5vw + 1.5vh); color: #3c4043ff; text-decoration: none; transition: all 0.25s; padding: 0.5vw" id="omcblink">Learn more ⬏</a>
+        </header>
+    </div>
     <div id="projectdante" style="background-color: #ffffff; border-radius: calc(1vh + 1vw); margin: calc(1vh + 1vw); cursor: pointer;" onclick="danteClick()" onmouseover="danteHover()" onmouseleave="danteUnhover()">
         <header style="font-family: DMSans; font-size: calc(3vw + 3vh); font-weight: 500; color: #3c4043ff; text-align: center; border-radius: calc(1vh + 1vw); transition: all 1.0s;  transition-timing-function: cubic-bezier(.2,.8,.4,.9);" id="danteheader">Dante</header>
         <header id="dantetext" style="font-family: DMSans; font-size: calc(1vw + 1vh);"></header>
@@ -149,6 +170,249 @@
 </div>
 </body>
 <script>
+    var convoyclicked = false;
+    var convoyindice = 0;
+    var convoyhovertext = "Convoy ⬎"
+    var convoyishovered = false;
+    const convoy_newtext = "Convoy is an extremely fast network scanner capable of above 300k packets per second, utilizing AF_XDP, rust, multithreading, and more. I used it to find and audit large security holes in my colleges network, including unprotected access to every lecture camera and projector."
+    function convoyClick() {
+        const convoytext = document.getElementById("convoytext");
+        convoytext.style.padding = "calc(1vh + 1vw)";
+        const projectconvoy = document.getElementById("projectconvoy");
+        const convoylinkdiv = document.getElementById("convoylinkdiv");
+        projectconvoy.setAttribute('onclick', 'convoyUnclick();');
+        convoyclicked = true;
+        const localconvoyspecifier = Math.random();
+        convoyspecifier = localconvoyspecifier
+        if (convoyishovered == true) {
+            const convoyheader = document.getElementById("convoyheader");
+            convoyheader.textContent = "Convoy ⬏"
+        };
+        convoyhovertext = "Convoy ⬏";
+        var clicktime = 0;
+        for (const num of Array(convoy_newtext.split(" ").length + 1 - convoyindice).fill(0)) {
+            setTimeout(function() {
+                if (convoyspecifier == localconvoyspecifier) {
+                    convoytext.textContent = convoy_newtext.split(" ").splice(0, convoyindice).join(" ");
+                    convoyindice = convoyindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (convoyspecifier == localconvoyspecifier) {
+                convoylinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function convoyUnclick() {
+        const convoytext = document.getElementById("convoytext");
+        const projectconvoy = document.getElementById("projectconvoy");
+        const convoylinkdiv = document.getElementById("convoylinkdiv");
+        projectconvoy.setAttribute('onclick', 'convoyClick();');
+        convoyclicked = false;
+        const localconvoyspecifier = Math.random();
+        convoyspecifier = localconvoyspecifier
+        setTimeout(function() {
+            if (convoyspecifier == localconvoyspecifier) {
+                convoylinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (convoyishovered == true) {
+            const convoyheader = document.getElementById("convoyheader");
+            convoyheader.textContent = "Convoy ⬎"
+        };
+        convoyhovertext = "Convoy ⬎";
+        for (const string of Array(convoyindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (convoyspecifier == localconvoyspecifier) {
+                    convoytext.textContent = convoy_newtext.split(" ").splice(0, convoyindice).join(" ");
+                    convoyindice = convoyindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (convoyspecifier == localconvoyspecifier) {
+                convoytext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function convoyHover() {
+        const convoyheader = document.getElementById("convoyheader");
+        convoyheader.textContent = convoyhovertext
+        convoyheader.style.fontWeight = "700";
+        convoyishovered = true;
+    }
+    function convoyUnhover() {
+        const convoyheader = document.getElementById("convoyheader");
+        convoyheader.textContent = "Convoy"
+        convoyheader.style.fontWeight = "500";
+        convoyishovered = false;
+    }
+    var pithingclicked = false;
+    var pithingindice = 0;
+    var pithinghovertext = "Pi-thing ⬎"
+    var pithingishovered = false;
+    const pithing_newtext = "Pi-thing is a work-in-progress pi cruncher written in rust that uses multiple techniques to converge quickly. It is slower than y-cruncher in the current state, but will hopefully surpass it."
+    function pithingClick() {
+        const pithingtext = document.getElementById("pithingtext");
+        pithingtext.style.padding = "calc(1vh + 1vw)";
+        const projectpithing = document.getElementById("projectpithing");
+        const pithinglinkdiv = document.getElementById("pithinglinkdiv");
+        projectpithing.setAttribute('onclick', 'pithingUnclick();');
+        pithingclicked = true;
+        const localpithingspecifier = Math.random();
+        pithingspecifier = localpithingspecifier
+        if (pithingishovered == true) {
+            const pithingheader = document.getElementById("pithingheader");
+            pithingheader.textContent = "Pi-thing ⬏"
+        };
+        pithinghovertext = "Pi-thing ⬏";
+        var clicktime = 0;
+        for (const num of Array(pithing_newtext.split(" ").length + 1 - pithingindice).fill(0)) {
+            setTimeout(function() {
+                if (pithingspecifier == localpithingspecifier) {
+                    pithingtext.textContent = pithing_newtext.split(" ").splice(0, pithingindice).join(" ");
+                    pithingindice = pithingindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (pithingspecifier == localpithingspecifier) {
+                pithinglinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function pithingUnclick() {
+        const pithingtext = document.getElementById("pithingtext");
+        const projectpithing = document.getElementById("projectpithing");
+        const pithinglinkdiv = document.getElementById("pithinglinkdiv");
+        projectpithing.setAttribute('onclick', 'pithingClick();');
+        pithingclicked = false;
+        const localpithingspecifier = Math.random();
+        pithingspecifier = localpithingspecifier
+        setTimeout(function() {
+            if (pithingspecifier == localpithingspecifier) {
+                pithinglinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (pithingishovered == true) {
+            const pithingheader = document.getElementById("pithingheader");
+            pithingheader.textContent = "Pi-thing ⬎"
+        };
+        pithinghovertext = "Pi-thing ⬎";
+        for (const string of Array(pithingindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (pithingspecifier == localpithingspecifier) {
+                    pithingtext.textContent = pithing_newtext.split(" ").splice(0, pithingindice).join(" ");
+                    pithingindice = pithingindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (pithingspecifier == localpithingspecifier) {
+                pithingtext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function pithingHover() {
+        const pithingheader = document.getElementById("pithingheader");
+        pithingheader.textContent = pithinghovertext
+        pithingheader.style.fontWeight = "700";
+        pithingishovered = true;
+    }
+    function pithingUnhover() {
+        const pithingheader = document.getElementById("pithingheader");
+        pithingheader.textContent = "Pi-thing"
+        pithingheader.style.fontWeight = "500";
+        pithingishovered = false;
+    }
+    var omcbclicked = false;
+    var omcbindice = 0;
+    var omcbhovertext = "Omcb ⬎"
+    var omcbishovered = false;
+    const omcb_newtext = "Omcb (One Million Checkboxes) was a viral site where anyone could modify checkboxes that anyone else could see. I created and used scripts with others to write images and animations to the canvas, interpretting it as a 1000x1000 image. This story itself later went viral."
+    function omcbClick() {
+        const omcbtext = document.getElementById("omcbtext");
+        omcbtext.style.padding = "calc(1vh + 1vw)";
+        const projectomcb = document.getElementById("projectomcb");
+        const omcblinkdiv = document.getElementById("omcblinkdiv");
+        projectomcb.setAttribute('onclick', 'omcbUnclick();');
+        omcbclicked = true;
+        const localomcbspecifier = Math.random();
+        omcbspecifier = localomcbspecifier
+        if (omcbishovered == true) {
+            const omcbheader = document.getElementById("omcbheader");
+            omcbheader.textContent = "Omcb ⬏"
+        };
+        omcbhovertext = "Omcb ⬏";
+        var clicktime = 0;
+        for (const num of Array(omcb_newtext.split(" ").length + 1 - omcbindice).fill(0)) {
+            setTimeout(function() {
+                if (omcbspecifier == localomcbspecifier) {
+                    omcbtext.textContent = omcb_newtext.split(" ").splice(0, omcbindice).join(" ");
+                    omcbindice = omcbindice + 1;
+                };
+            }, clicktime);
+            clicktime = clicktime + 100;
+        };
+        setTimeout(function() {
+            if (omcbspecifier == localomcbspecifier) {
+                omcblinkdiv.style.display = "";
+            };
+        }, clicktime);
+    };
+    function omcbUnclick() {
+        const omcbtext = document.getElementById("omcbtext");
+        const projectomcb = document.getElementById("projectomcb");
+        const omcblinkdiv = document.getElementById("omcblinkdiv");
+        projectomcb.setAttribute('onclick', 'omcbClick();');
+        omcbclicked = false;
+        const localomcbspecifier = Math.random();
+        omcbspecifier = localomcbspecifier
+        setTimeout(function() {
+            if (omcbspecifier == localomcbspecifier) {
+                omcblinkdiv.style.display = "none";
+            };
+        }, 0);
+        var unclicktime = 100;
+        if (omcbishovered == true) {
+            const omcbheader = document.getElementById("omcbheader");
+            omcbheader.textContent = "Omcb ⬎"
+        };
+        omcbhovertext = "Omcb ⬎";
+        for (const string of Array(omcbindice + 1).fill(0)) {
+            setTimeout(function() {
+                if (omcbspecifier == localomcbspecifier) {
+                    omcbtext.textContent = omcb_newtext.split(" ").splice(0, omcbindice).join(" ");
+                    omcbindice = omcbindice - 1;
+                };
+            }, unclicktime);
+            unclicktime = unclicktime + 100;
+        };
+        setTimeout(function() {
+            if (omcbspecifier == localomcbspecifier) {
+                omcbtext.style.padding = "";
+            };
+        }, unclicktime - 100);
+    };
+    function omcbHover() {
+        const omcbheader = document.getElementById("omcbheader");
+        omcbheader.textContent = omcbhovertext
+        omcbheader.style.fontWeight = "700";
+        omcbishovered = true;
+    }
+    function omcbUnhover() {
+        const omcbheader = document.getElementById("omcbheader");
+        omcbheader.textContent = "Omcb"
+        omcbheader.style.fontWeight = "500";
+        omcbishovered = false;
+    }
     var danteclicked = false;
     var danteindice = 0;
     var dantehovertext = "Dante ⬎"
